@@ -1,5 +1,6 @@
 import 'package:elice_mobile_team_pa/app/app.dart';
 import 'package:elice_mobile_team_pa/free_course/free_course.dart';
+import 'package:elice_mobile_team_pa/home/home.dart';
 import 'package:elice_mobile_team_pa/recommended_course/recommended_course.dart';
 import 'package:elice_mobile_team_pa/repository/repository.dart';
 import 'package:flutter/material.dart';
@@ -24,15 +25,14 @@ class App extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<FreeCourseBloc>(
+          BlocProvider<FreeCourseCubit>(
             create: (BuildContext context) =>
-                FreeCourseBloc(courseRepository: courseRepository)
-                  ..add(FreeCourseFetched()),
+                FreeCourseCubit(courseRepository)..onFreeCourseFetched(),
           ),
-          BlocProvider<RecommendedCourseBloc>(
+          BlocProvider<RecommendedCourseCubit>(
             create: (BuildContext context) =>
-                RecommendedCourseBloc(courseRepository: courseRepository)
-                  ..add(RecommendedCourseFetched()),
+                RecommendedCourseCubit(courseRepository)
+                  ..onRecommendedCourseFetched(),
           ),
         ],
         child: MaterialApp.router(

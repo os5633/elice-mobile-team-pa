@@ -8,6 +8,11 @@ class AppTextStyle {
     fontWeight: FontWeight.w700,
     height: 20 / 16,
   );
+  static const Head2 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    height: 16 / 14,
+  );
   static const subHead1 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w700,

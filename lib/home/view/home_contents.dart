@@ -1,7 +1,5 @@
 import 'package:elice_mobile_team_pa/common/common.dart';
-import 'package:elice_mobile_team_pa/free_course/free_course.dart';
 import 'package:elice_mobile_team_pa/home/home.dart';
-import 'package:elice_mobile_team_pa/recommended_course/recommended_course.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +13,7 @@ class HomeContents extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.only(top: 22),
       children: [
-        BlocBuilder<RecommendedCourseBloc, RecommendedCourseState>(
+        BlocBuilder<RecommendedCourseCubit, RecommendedCourseState>(
           buildWhen: (previous, current) =>
               previous.status != current.status ||
               previous.courses != current.courses,
@@ -37,8 +35,8 @@ class HomeContents extends StatelessWidget {
             }
           },
         ),
-        const SizedBox(height: 24),
-        BlocBuilder<FreeCourseBloc, FreeCourseState>(
+        const SizedBox(height: 12),
+        BlocBuilder<FreeCourseCubit, FreeCourseState>(
           buildWhen: (previous, current) =>
               previous.status != current.status ||
               previous.courses != current.courses,

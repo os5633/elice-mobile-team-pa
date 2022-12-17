@@ -15,6 +15,15 @@ class HorizontalCourseCard extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.black.withOpacity(0.1),
+              blurRadius: 20.0,
+              offset: const Offset(4.0, 4.0),
+            ),
+          ],
+        ),
         margin: EdgeInsets.only(
           left: index == 0 ? 16 : 0,
           right: index == 9 ? 16 : 0,

@@ -2,6 +2,7 @@ import 'package:elice_mobile_team_pa/common/common.dart';
 import 'package:elice_mobile_team_pa/home/home.dart';
 import 'package:elice_mobile_team_pa/repository/model/models.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HorizontalCourses extends StatelessWidget {
   const HorizontalCourses({
@@ -15,6 +16,8 @@ class HorizontalCourses extends StatelessWidget {
 
   static const RECOMMENDED_COURSE_TITLE = "추천과목";
   static const FREE_COURSE_TITLE = "무료과목";
+  static const RECOMMENDED_COURSE_ROUTE = "/entireRecommendedCourse";
+  static const FREE_COURSE_ROUTE = "/entireFreeCourse";
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,11 @@ class HorizontalCourses extends StatelessWidget {
                     : FREE_COURSE_TITLE,
               ),
               ViewEntireCourseButton(
-                onTap: () => {},
+                onTap: () => context.go(
+                  courseType == CourseType.recommended
+                      ? RECOMMENDED_COURSE_ROUTE
+                      : FREE_COURSE_ROUTE,
+                ),
               ),
             ],
           ),
