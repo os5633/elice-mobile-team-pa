@@ -8,6 +8,7 @@ class RecommendedCourseState extends Equatable {
   final bool hasReachedMax;
   final int offset;
   final CourseType courseType;
+  final String? errorMessage;
 
   const RecommendedCourseState({
     this.status = RecommendedCourseStatus.initial,
@@ -15,6 +16,7 @@ class RecommendedCourseState extends Equatable {
     this.hasReachedMax = false,
     this.offset = 0,
     this.courseType = CourseType.recommended,
+    this.errorMessage,
   });
 
   @override
@@ -27,6 +29,7 @@ class RecommendedCourseState extends Equatable {
     bool? hasReachedMax,
     int? offset,
     CourseType? courseType,
+    String? errorMessage,
   }) {
     return RecommendedCourseState(
       status: status ?? this.status,
@@ -34,6 +37,7 @@ class RecommendedCourseState extends Equatable {
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
       offset: offset ?? this.offset,
       courseType: courseType ?? this.courseType,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 }

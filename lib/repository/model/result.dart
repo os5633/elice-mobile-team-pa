@@ -6,7 +6,7 @@ part 'result.g.dart';
 @JsonSerializable()
 class Result extends Equatable {
   final String status;
-  final String reason;
+  final String? reason;
 
   const Result({
     required this.status,
@@ -14,7 +14,7 @@ class Result extends Equatable {
   });
 
   @override
-  List<Object> get props => [status, reason];
+  List<Object> get props => [status];
 
   factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
 }

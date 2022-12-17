@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:elice_mobile_team_pa/repository/model/models.dart';
 import 'package:elice_mobile_team_pa/repository/repository.dart';
+import 'package:elice_mobile_team_pa/support/support.dart';
 import 'package:equatable/equatable.dart';
 import 'package:stream_transform/stream_transform.dart';
 
@@ -43,7 +44,9 @@ class RecommendedCourseBloc
           offset: state.offset,
           count: count,
         );
-        if (courseRes.result.status != "ok") throw Exception();
+        if (courseRes.result.status != "ok") {
+          throw EliceException(courseRes.result.reason);
+        }
         return emit(
           state.copyWith(
             status: RecommendedCourseStatus.success,
@@ -67,9 +70,18 @@ class RecommendedCourseBloc
                 hasReachedMax: false,
               ),
             );
-    } catch (_) {
-      if (isClosed) return;
-      emit(state.copyWith(status: RecommendedCourseStatus.failure));
+    } on EliceException catch (err) {
+      emit(state.copyWith(
+        errorMessage: err.message,
+        status: RecommendedCourseStatus.failure,
+      ));
+    } catch (err) {
+      emit(
+        state.copyWith(
+          errorMessage: err.toString(),
+          status: RecommendedCourseStatus.failure,
+        ),
+      );
     }
   }
 }

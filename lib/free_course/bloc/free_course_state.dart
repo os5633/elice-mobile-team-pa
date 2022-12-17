@@ -8,13 +8,16 @@ class FreeCourseState extends Equatable {
   final bool hasReachedMax;
   final int offset;
   final CourseType courseType;
+  final String? errorMessage;
 
-  const FreeCourseState(
-      {this.status = FreeCourseStatus.initial,
-      this.courses = const <Course>[],
-      this.hasReachedMax = false,
-      this.offset = 0,
-      this.courseType = CourseType.free});
+  const FreeCourseState({
+    this.status = FreeCourseStatus.initial,
+    this.courses = const <Course>[],
+    this.hasReachedMax = false,
+    this.offset = 0,
+    this.courseType = CourseType.free,
+    this.errorMessage,
+  });
 
   @override
   List<Object> get props =>
@@ -26,6 +29,7 @@ class FreeCourseState extends Equatable {
     bool? hasReachedMax,
     int? offset,
     CourseType? courseType,
+    String? errorMessage,
   }) {
     return FreeCourseState(
       status: status ?? this.status,
@@ -33,6 +37,7 @@ class FreeCourseState extends Equatable {
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
       offset: offset ?? this.offset,
       courseType: courseType ?? this.courseType,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 }
