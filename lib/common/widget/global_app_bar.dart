@@ -30,7 +30,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: leading,
       backgroundColor: color,
       elevation: elevation,
-      shadowColor: shadowColor,
+      shadowColor: shadowColor ?? AppColors.black.withOpacity(0.02),
     );
   }
 
