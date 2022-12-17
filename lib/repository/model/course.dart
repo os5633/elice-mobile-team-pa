@@ -11,16 +11,19 @@ class Course extends Equatable {
   @JsonKey(name: "logo_file_url")
   final String? logoFileUrl;
   final List<Instructor> instructors;
+  @JsonKey(name: "is_discounted")
+  final bool isDiscounted;
 
   const Course({
     required this.id,
     required this.title,
     required this.logoFileUrl,
     required this.instructors,
+    required this.isDiscounted,
   });
 
   @override
-  List<Object> get props => [id, title, instructors];
+  List<Object> get props => [id, title, instructors, isDiscounted];
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
 }

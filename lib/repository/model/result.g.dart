@@ -8,7 +8,7 @@ part of 'result.dart';
 
 Result _$ResultFromJson(Map<String, dynamic> json) => Result(
       status: json['status'] as String,
-      reason: json['reason'] as String,
+      reason: json['reason'] as String?,
     );
 
 Map<String, dynamic> _$ResultToJson(Result instance) => <String, dynamic>{

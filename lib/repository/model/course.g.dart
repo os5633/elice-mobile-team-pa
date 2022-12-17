@@ -13,6 +13,7 @@ Course _$CourseFromJson(Map<String, dynamic> json) => Course(
       instructors: (json['instructors'] as List<dynamic>)
           .map((e) => Instructor.fromJson(e as Map<String, dynamic>))
           .toList(),
+      isDiscounted: json['is_discounted'] as bool,
     );
 
 Map<String, dynamic> _$CourseToJson(Course instance) => <String, dynamic>{
@@ -20,4 +21,5 @@ Map<String, dynamic> _$CourseToJson(Course instance) => <String, dynamic>{
       'title': instance.title,
       'logo_file_url': instance.logoFileUrl,
       'instructors': instance.instructors,
+      'is_discounted': instance.isDiscounted,
     };
