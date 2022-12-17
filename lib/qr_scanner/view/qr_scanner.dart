@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:elice_mobile_team_pa/common/layout/screen_layout.dart';
@@ -5,6 +6,7 @@ import 'package:elice_mobile_team_pa/common/style/app_colors.dart';
 import 'package:elice_mobile_team_pa/common/style/app_text_styles.dart';
 import 'package:elice_mobile_team_pa/support/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class QrScanner extends StatefulWidget {
@@ -18,10 +20,11 @@ class _QrScannerState extends State<QrScanner> {
   final _mobileScannerController = MobileScannerController();
 
   static const QR_SCANNER_INFO = "QR 코드를 인식해주세요";
+  static const WEB_VIEW_URL = "/embedWebview";
 
   Future<void> onDetect(Barcode barcode) async {
-    bool isBase64 = StringValidator.isBase64(barcode.rawValue);
-    log(barcode.rawValue.toString());
+    String url = StringValidator.decodeBase64(barcode.rawValue.toString());
+    context.go(WEB_VIEW_URL, extra: url);
   }
 
   @override
@@ -56,5 +59,11 @@ class _QrScannerState extends State<QrScanner> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _mobileScannerController.dispose();
+    super.dispose();
   }
 }
