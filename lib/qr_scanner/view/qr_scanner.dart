@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:elice_mobile_team_pa/common/layout/screen_layout.dart';
 import 'package:elice_mobile_team_pa/common/style/app_colors.dart';
 import 'package:elice_mobile_team_pa/common/style/app_text_styles.dart';
@@ -23,7 +20,7 @@ class _QrScannerState extends State<QrScanner> {
   static const WEB_VIEW_URL = "/embedWebview";
 
   Future<void> onDetect(Barcode barcode) async {
-    String url = StringValidator.decodeBase64(barcode.rawValue.toString());
+    String url = EliceDecoder.decodeBase64(barcode.rawValue.toString());
     context.go(WEB_VIEW_URL, extra: url);
   }
 
