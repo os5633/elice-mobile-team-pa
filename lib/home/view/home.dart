@@ -1,5 +1,6 @@
 import 'package:elice_mobile_team_pa/common/common.dart';
 import 'package:elice_mobile_team_pa/home/home.dart';
+import 'package:elice_mobile_team_pa/qr_scanner/qr_scanner.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -49,10 +50,11 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
-        children: [
-          const HomeContents(),
-          Container(),
+        children: const [
+          HomeContents(),
+          QrScanner(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
