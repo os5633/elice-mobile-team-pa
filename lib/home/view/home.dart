@@ -14,8 +14,8 @@ class _HomeState extends State<Home> {
   late final PageController _pageController;
   int _currentIndex = 0;
 
-  static const BOTTOM_NAV_HOME = "HOME";
-  static const BOTTOM_NAV_QR = "QR";
+  static const LABEL_HOME = "HOME";
+  static const LABEL_QR = "QR";
 
   @override
   void initState() {
@@ -38,15 +38,21 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return ScreenLayout(
       appBar: GlobalAppBar(
-        title: const PurpleLogoAsset(),
+        title: _currentIndex == 0
+            ? const PurpleLogoAsset()
+            : Text(
+                LABEL_QR,
+                style: AppTextStyle.head2.copyWith(color: AppColors.black),
+              ),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.notifications_none_outlined,
-              color: AppColors.black.withOpacity(0.54),
+          if (_currentIndex == 0)
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.notifications_none_outlined,
+                color: AppColors.black.withOpacity(0.54),
+              ),
             ),
-          ),
         ],
       ),
       body: PageView(
@@ -66,13 +72,13 @@ class _HomeState extends State<Home> {
         onTap: (index) => _onChangePage(index),
         items: const [
           BottomNavigationBarItem(
-            label: BOTTOM_NAV_HOME,
+            label: LABEL_HOME,
             icon: Icon(
               Icons.account_balance,
             ),
           ),
           BottomNavigationBarItem(
-            label: BOTTOM_NAV_QR,
+            label: LABEL_QR,
             icon: Icon(
               Icons.camera_alt_outlined,
             ),
