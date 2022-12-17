@@ -28,7 +28,7 @@ class _EntireFreeCourseState extends State<EntireFreeCourse> {
         color: AppColors.navy,
         title: Text(
           APP_BAR_TITLE,
-          style: AppTextStyle.Head2,
+          style: AppTextStyle.head2,
         ),
       ),
       body: BlocBuilder<EntireFreeCourseBloc, EntireFreeCourseState>(

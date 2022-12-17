@@ -19,7 +19,7 @@ class HorizontalCourseCard extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: AppColors.black.withOpacity(0.1),
-              blurRadius: 20.0,
+              blurRadius: 10.0,
               offset: const Offset(4.0, 4.0),
             ),
           ],
