@@ -19,7 +19,7 @@ class _QrScannerState extends State<QrScanner> {
   static const QR_SCANNER_INFO = "QR 코드를 인식해주세요";
   static const WEB_VIEW_URL = "/embedWebview";
 
-  Future<void> onDetect(Barcode barcode) async {
+  void _onDetect(Barcode barcode) {
     String url = EliceDecoder.decodeBase64(barcode.rawValue.toString());
     context.go(WEB_VIEW_URL, extra: url);
   }
@@ -44,7 +44,7 @@ class _QrScannerState extends State<QrScanner> {
               child: MobileScanner(
                 fit: BoxFit.cover,
                 controller: _mobileScannerController,
-                onDetect: (barcode, args) => onDetect(barcode),
+                onDetect: (barcode, args) => _onDetect(barcode),
               ),
             ),
             const SizedBox(height: 24),
