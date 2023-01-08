@@ -39,6 +39,8 @@ class _EntireRecommendedCourseState extends State<EntireRecommendedCourse> {
             previous.status != current.status ||
             previous.courses != current.courses,
         builder: (context, state) {
+          int ItemCount =
+              state.hasReachedMax ? state.courseCount : state.courses.length;
           switch (state.status) {
             case EntireRecommendedCourseStatus.failure:
               return EmptyCourse(message: state.errorMessage);
@@ -53,15 +55,9 @@ class _EntireRecommendedCourseState extends State<EntireRecommendedCourse> {
                   controller: _scrollController,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                  itemCount: (state.hasReachedMax
-                          ? state.courseCount
-                          : state.courses.length) +
-                      1,
+                  itemCount: ItemCount + 1,
                   itemBuilder: (context, index) {
-                    if (index ==
-                        (state.hasReachedMax
-                            ? state.courseCount
-                            : state.courses.length)) {
+                    if (index == ItemCount) {
                       return state.status != EntireFreeCourseStatus.loading
                           ? const SizedBox.shrink()
                           : const Center(child: CircularProgressIndicator());
