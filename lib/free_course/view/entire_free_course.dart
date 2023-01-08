@@ -36,6 +36,8 @@ class _EntireFreeCourseState extends State<EntireFreeCourse> {
             previous.status != current.status ||
             previous.courses != current.courses,
         builder: (context, state) {
+          int itemCount =
+              state.hasReachedMax ? state.courseCount : state.courses.length;
           switch (state.status) {
             case EntireFreeCourseStatus.failure:
               return EmptyCourse(message: state.errorMessage);
@@ -50,15 +52,9 @@ class _EntireFreeCourseState extends State<EntireFreeCourse> {
                   controller: _scrollController,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                  itemCount: (state.hasReachedMax
-                          ? state.courseCount
-                          : state.courses.length) +
-                      1,
+                  itemCount: itemCount + 1,
                   itemBuilder: (context, index) {
-                    if (index ==
-                        (state.hasReachedMax
-                            ? state.courseCount
-                            : state.courses.length)) {
+                    if (index == itemCount) {
                       return state.status != EntireFreeCourseStatus.loading
                           ? const SizedBox.shrink()
                           : const Center(child: CircularProgressIndicator());

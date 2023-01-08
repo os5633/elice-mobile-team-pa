@@ -37,7 +37,7 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'embedWebview',
           builder: (BuildContext context, GoRouterState state) => EmbedWebView(
-            url: state.extra as String? ?? "https://academy.elice.io/explore",
+            url: state.extra as String?,
           ),
         ),
       ],

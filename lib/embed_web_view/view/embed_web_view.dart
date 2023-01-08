@@ -8,7 +8,7 @@ class EmbedWebView extends StatefulWidget {
     required this.url,
   });
 
-  final String url;
+  final String? url;
 
   @override
   State<EmbedWebView> createState() => _EmbedWebViewState();
@@ -17,9 +17,10 @@ class EmbedWebView extends StatefulWidget {
 class _EmbedWebViewState extends State<EmbedWebView> {
   late final WebViewController _webViewController;
 
-  String get url => widget.url;
+  String get url => widget.url ?? WEB_VIEW_BASE_URL;
 
   static const APP_BAR_TITLE = "Elice Web";
+  static const WEB_VIEW_BASE_URL = "https://academy.elice.io/explore";
 
   @override
   void initState() {
