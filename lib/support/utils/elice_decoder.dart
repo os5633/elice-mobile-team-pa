@@ -8,7 +8,7 @@ class EliceDecoder {
 
   static String decodeBase64(String str) {
     if (_base64.hasMatch(str)) {
-      return utf8.decode(base64Url.decode(str.toString()));
+      return utf8.decode(base64Url.decode(str));
     }
     return str;
   }
